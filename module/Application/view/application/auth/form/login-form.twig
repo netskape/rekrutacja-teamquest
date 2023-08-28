@@ -1,0 +1,27 @@
+{{ form().openTag(loginForm)|raw }}
+    <div class="form-group">
+        {{ formLabel(loginForm.get('email')) }}
+        {{ formElement(loginForm.get('email')) }}
+        {{ formElementErrors()
+            .setMessageOpenFormat('<div class="text-danger pt-1">')
+            .setMessageSeparatorString('<br />')
+            .setMessageCloseString('</div>')
+            .render(loginForm.get('email'))
+        |raw }}
+    </div>
+
+    <div class="form-group">
+        {{ formLabel(loginForm.get('password')) }}
+        {{ formElement(loginForm.get('password')) }}
+        {{ formElementErrors()
+            .setMessageOpenFormat('<div class="text-danger pt-1">')
+            .setMessageSeparatorString('<br />')
+            .setMessageCloseString('</div>')
+            .render(loginForm.get('password'))
+        |raw }}
+    </div>
+    <div class="form-group mt-2">
+        {{ formElement(loginForm.get('submit')) }}
+    </div>
+
+{{ form().closeTag(loginForm)|raw }}

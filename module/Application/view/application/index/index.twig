@@ -1,0 +1,28 @@
+{% extends 'layout/layout' %}
+
+{% block content %}
+   <div class="container">
+      {% include 'application/index/form/csv-form' %}
+
+      {% if importedUsers %}
+         <table class="table">
+         {%  for email,user in importedUsers %}
+            {% if loop.index ==1 %}
+               <tr>
+                  <th>email</th>
+                  <th>status importu</th>
+                  <th>treść błedu</th>
+               </tr>
+            {% endif %}
+            <tr>
+               <td>{{ email }}</td>
+               <td> {% if user.status %}zaimportowano{% else %}bład{% endif %}</td>
+               <td> {{ user.message }}</td>
+            </tr>
+         {% endfor %}
+         </table>
+      {% endif %}
+
+   </div>
+
+{% endblock %}

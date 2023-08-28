@@ -1,0 +1,32 @@
+{% extends 'layout/base' %}
+
+{% block body %}
+    <header class="border-bottom">
+        <div class="container px-0 py-3">
+            {% block header %}
+                <div class="d-flex align-items-center justify-content-between">
+                {% if user %}
+                    <div class="px-3">Witaj {{ user.email }}</div>
+                {% endif %}
+                <ul class="nav d-flex justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Strona główna</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=/auth/change-password>zmień hasło</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/auth/logout">wyloguj</a>
+                    </li>
+                </ul>
+                </div>
+            {% endblock %}
+        </div>
+    </header>
+    <div class="container-fluid">
+        {% block content %}{% endblock %}
+    </div>
+
+    {% block footer %}{% endblock %}
+    {% block js %}{% endblock %}
+{% endblock %}

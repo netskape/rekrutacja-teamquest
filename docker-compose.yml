@@ -1,0 +1,36 @@
+version: '3'
+services:
+  php-fpm:
+    build:
+      context: .
+      dockerfile: Dockerfile.php-fpm
+    volumes:
+      - ./:/var/www/html
+    expose:
+      - 9000
+    networks:
+      - app-network
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "81:80"
+    depends_on:
+      - php-fpm
+    networks:
+      - app-network
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: rekrutacjia
+      MYSQL_DATABASE: rekrutacjia
+    ports:
+      - "3307:3306"
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
